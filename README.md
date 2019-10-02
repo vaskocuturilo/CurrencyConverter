@@ -1,10 +1,9 @@
 ## Smoke auotmation testing for Currency Converter
 
 ## Test scenario:
-**Note**: 
-▪ Go to http://www.oanda.com/currency/converter/ 
-▪ Check that Converter works correct for current day for currency (USD) 
-▪ Check that rate did not change on the weekend 
+ - Go to http://www.oanda.com/currency/converter/ 
+ - Check that Converter works correct for current day for currency (USD) 
+ - Check that rate did not change on the weekend 
     
 ## Requirements:
 - Use any *object-oriented language* .
