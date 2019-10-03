@@ -12,6 +12,8 @@ public class ConvertCurrentTest extends BaseWeb {
     public void testCheckCurrentConvert() {
         new CurrentConvertPage()
                 .navigateToUrl("URL")
-                .checkTitlePage("TITLE");
+                .checkTitlePage("TITLE")
+                .checkExistingField("USD")
+                .checkRequiredField("EUR");
     }
 }

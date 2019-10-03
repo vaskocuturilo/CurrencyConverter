@@ -1,6 +1,9 @@
 package com.oanda.base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -14,12 +17,12 @@ public abstract class AbstractPage {
     private final WebDriverWait webDriverWait;
 
     /**
-     * The constant DELAY.
+     * The constant DELAY. This is delay for WebDriverWait is seconds.
      */
-    private static final long DELAY = 5000;
+    private static final int DELAY = 5;
 
     /**
-     * Instantiates a new Abstract page.
+     * The constructor.
      */
     public AbstractPage() {
         webDriverWait = new WebDriverWait(DriverHolder.getDriverThread(), DELAY);
@@ -57,5 +60,16 @@ public abstract class AbstractPage {
         DriverHolder.getDriverThread().manage().deleteAllCookies();
         DriverHolder.getDriverThread().close();
     }
+
+    /**
+     * Wait for visibility of element located by web element.
+     *
+     * @param locator the locator.
+     * @return the web element.
+     */
+    public WebElement waitForVisibilityOfElementLocatedBy(final By locator) {
+        return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
 
 }
