@@ -40,8 +40,8 @@ dependencies {
     compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.7.0'
     compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.10'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.5'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
     testCompile group: 'org.slf4j', name: 'slf4j-nop', version: '1.8.0-beta2'
-
 }
 
 test {
