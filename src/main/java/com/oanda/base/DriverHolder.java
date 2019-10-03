@@ -14,10 +14,11 @@ public final class DriverHolder {
     private static final ThreadLocal<WebDriver> DRIVER_THREAD = new ThreadLocal<>();
 
     /**
-     * The default constructor.
+     * The constructor.
      */
     private DriverHolder() {
     }
+
 
     /**
      * Gets thread driver.

@@ -1,6 +1,7 @@
 package com.oanda.pages;
 
 import com.oanda.base.AbstractPage;
+import com.oanda.waiters.WaitCondition;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -52,7 +53,6 @@ public class CurrentConvertPage extends AbstractPage {
         return this;
     }
 
-
     /**
      * Check existing field current convert page.
      *
@@ -60,8 +60,8 @@ public class CurrentConvertPage extends AbstractPage {
      * @return the current convert page.
      */
     public CurrentConvertPage checkExistingField(final String currentCurrency) {
-
-        Assert.assertEquals(waitForVisibilityOfElementLocatedBy(QUOTE_CODE).getText(), currentCurrency);
+        final WaitCondition waitCondition = new WaitCondition();
+        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_CODE).getText(), currentCurrency);
         return this;
     }
 
@@ -72,8 +72,8 @@ public class CurrentConvertPage extends AbstractPage {
      * @return the current convert page.
      */
     public CurrentConvertPage checkRequiredField(final String currentCurrency) {
-
-        Assert.assertEquals(waitForVisibilityOfElementLocatedBy(BASE_CODE).getText(), currentCurrency);
+        final WaitCondition waitCondition = new WaitCondition();
+        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(BASE_CODE).getText(), currentCurrency);
         return this;
     }
 
