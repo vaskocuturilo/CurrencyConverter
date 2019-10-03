@@ -13,8 +13,8 @@ public class Conditions {
     /**
      * Method should have.
      *
-     * @param element the element
-     * @param text    the text
+     * @param element the element.
+     * @param text    the text.
      */
     public static void shouldHave(WebElement element, String text) {
         assertEquals(element.getText(), text);

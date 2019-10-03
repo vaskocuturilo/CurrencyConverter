@@ -23,6 +23,11 @@ public class CurrentConvertPage extends AbstractPage {
     private static final By BASE_CODE = By.cssSelector("span[id='base_currency_code']");
 
     /**
+     * The constant PERCENT. This is css selector for ui automation script.
+     */
+    private static final By PERCENT = By.cssSelector("div[id='interbank_rate'] input");
+
+    /**
      * The default constructor.
      */
     public CurrentConvertPage() {
@@ -43,7 +48,7 @@ public class CurrentConvertPage extends AbstractPage {
     }
 
     /**
-     * Check title page current convert page.
+     * Method Check title page current convert page.
      *
      * @param titleName the title name.
      * @return the current convert page.
@@ -54,7 +59,7 @@ public class CurrentConvertPage extends AbstractPage {
     }
 
     /**
-     * Check existing field current convert page.
+     * Method Check existing field current convert page.
      *
      * @param currentCurrency the current currency.
      * @return the current convert page.
@@ -66,7 +71,7 @@ public class CurrentConvertPage extends AbstractPage {
     }
 
     /**
-     * Check required field current convert page.
+     * Method Check required field current convert page.
      *
      * @param currentCurrency the current currency.
      * @return the current convert page.
@@ -77,6 +82,19 @@ public class CurrentConvertPage extends AbstractPage {
         return this;
     }
 
+
+    /**
+     * Method Check interbank rate current convert page.
+     *
+     * @param bankPercent the bank percent.
+     * @return the current convert page.
+     */
+    public CurrentConvertPage checkInterbankRate(final String bankPercent) {
+        final WaitCondition waitCondition = new WaitCondition();
+        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(PERCENT).getAttribute("value"), bankPercent);
+
+        return this;
+    }
 
     @Override
     public void test() {

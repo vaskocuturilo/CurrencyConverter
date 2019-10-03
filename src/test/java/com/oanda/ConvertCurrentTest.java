@@ -14,6 +14,7 @@ public class ConvertCurrentTest extends BaseWeb {
                 .navigateToUrl("URL")
                 .checkTitlePage("TITLE")
                 .checkExistingField("USD")
-                .checkRequiredField("EUR");
+                .checkRequiredField("EUR")
+                .checkInterbankRate("0%");
     }
 }
