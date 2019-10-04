@@ -1,4 +1,4 @@
-package com.oanda;
+package com.oanda.currency;
 
 import com.oanda.base.BaseWeb;
 import com.oanda.pages.CurrentConvertPage;
@@ -16,6 +16,6 @@ public class ConvertCurrentTest extends BaseWeb {
                 .checkExistingField("USD")
                 .checkRequiredField("EUR")
                 .checkInterbankRate("0%")
-                .checkCurrentDate("","","");
+                .checkDefaultCalculatedField();
     }
 }

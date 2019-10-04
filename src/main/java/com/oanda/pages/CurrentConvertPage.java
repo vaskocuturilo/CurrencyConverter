@@ -16,6 +16,11 @@ import static com.oanda.utils.PropertiesReader.loadPropertyName;
 public class CurrentConvertPage extends AbstractPage {
 
     /**
+     * The constant VALUE.
+     */
+    private static final String VALUE = "value";
+
+    /**
      * The constant QUOTE_CODE. This is css selector for ui automation script.
      */
     private static final By QUOTE_CODE = By.cssSelector("span[id='quote_currency_code']");
@@ -34,6 +39,17 @@ public class CurrentConvertPage extends AbstractPage {
      * The constant CURRENT_DATE. This is css selector for ui automation script.
      */
     private static final By CURRENT_DATE = By.cssSelector("input[id='end_date_input']");
+
+    /**
+     * The constant RESULT. This is css selector for ui automation script.
+     */
+    private static final By RESULT = By.cssSelector("input[id='base_amount_input']");
+
+    /**
+     * The constant RESULT. This is css selector for ui automation script.
+     */
+    private static final By AMOUNT = By.cssSelector("td[id='sellMyCurrencyGet']");
+
 
     /**
      * The default constructor.
@@ -99,24 +115,29 @@ public class CurrentConvertPage extends AbstractPage {
      */
     public CurrentConvertPage checkInterbankRate(final String bankPercent) {
         final WaitCondition waitCondition = new WaitCondition();
-        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(PERCENT).getAttribute("value"), bankPercent);
+        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(PERCENT).getAttribute(VALUE), bankPercent);
 
         return this;
     }
 
     /**
-     * Check current date current convert page.
+     * Method checkDefaultCalculatedField.
      *
-     * @param day   this is day value for check.
-     * @param month this is month value for check.
-     * @param year  this is year value for check.
-     * @return the current convert page.
+     * @return the current convert page
      */
-    public CurrentConvertPage checkCurrentDate(String day, String month, String year) {
+    public CurrentConvertPage checkDefaultCalculatedField() {
         final WaitCondition waitCondition = new WaitCondition();
-        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(CURRENT_DATE)
-                .getAttribute("value"), day + " " + month + " " + year);
+        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(AMOUNT).getText(), "you get " + getResultFromCalculated() + " EUR");
         return this;
+    }
+
+    /**
+     * Method getResultFromCalculated .
+     *
+     * @return the result from calculated amount field int
+     */
+    public String getResultFromCalculated() {
+        return findElement(RESULT).getAttribute(VALUE);
     }
 
     @Override

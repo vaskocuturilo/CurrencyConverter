@@ -1,6 +1,8 @@
 package com.oanda.base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * The class Abstract page.
@@ -47,5 +49,15 @@ public abstract class AbstractPage {
     public static void closeWebBrowser() {
         DriverHolder.getDriverThread().manage().deleteAllCookies();
         DriverHolder.getDriverThread().close();
+    }
+
+    /**
+     * Find element web element.
+     *
+     * @param locator this is locator of element.
+     * @return the web element.
+     */
+    public WebElement findElement(final By locator) {
+        return DriverHolder.getDriverThread().findElement(locator);
     }
 }

@@ -1,4 +1,4 @@
-## Smoke auotmation testing for Currency Converter
+## Smoke automation testing for Currency Converter
 
 ## Test scenario:
  - Go to http://www.oanda.com/currency/converter/ 
@@ -23,7 +23,7 @@ to generate report ```gradle allureReport, gradle allureServe```
 **List of technologies**: Java 8, Gradle, TestNG, Allure, Selenium WebDriver.
 **Note**: You should have installed Chrome browser, Gradle.
 
-![]()
+![](https://c.radikal.ru/c10/1910/da/9576539a8d06.png)
 
 ![]()
 
