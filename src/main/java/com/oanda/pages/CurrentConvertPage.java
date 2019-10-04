@@ -1,7 +1,9 @@
 package com.oanda.pages;
 
 import com.oanda.base.AbstractPage;
+import com.oanda.waiters.Conditions;
 import com.oanda.waiters.WaitCondition;
+import lombok.experimental.ExtensionMethod;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -10,6 +12,7 @@ import static com.oanda.utils.PropertiesReader.loadPropertyName;
 /**
  * The class Current convert page.
  */
+@ExtensionMethod(Conditions.class)
 public class CurrentConvertPage extends AbstractPage {
 
     /**
@@ -26,6 +29,11 @@ public class CurrentConvertPage extends AbstractPage {
      * The constant PERCENT. This is css selector for ui automation script.
      */
     private static final By PERCENT = By.cssSelector("div[id='interbank_rate'] input");
+
+    /**
+     * The constant CURRENT_DATE. This is css selector for ui automation script.
+     */
+    private static final By CURRENT_DATE = By.cssSelector("input[id='end_date_input']");
 
     /**
      * The default constructor.
@@ -93,6 +101,21 @@ public class CurrentConvertPage extends AbstractPage {
         final WaitCondition waitCondition = new WaitCondition();
         Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(PERCENT).getAttribute("value"), bankPercent);
 
+        return this;
+    }
+
+    /**
+     * Check current date current convert page.
+     *
+     * @param day   this is day value for check.
+     * @param month this is month value for check.
+     * @param year  this is year value for check.
+     * @return the current convert page.
+     */
+    public CurrentConvertPage checkCurrentDate(String day, String month, String year) {
+        final WaitCondition waitCondition = new WaitCondition();
+        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(CURRENT_DATE)
+                .getAttribute("value"), day + " " + month + " " + year);
         return this;
     }
 
