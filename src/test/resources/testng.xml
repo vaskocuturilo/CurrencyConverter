@@ -6,4 +6,9 @@
             <package name="com.oanda.currency.*"/>
         </packages>
     </test>
+    <test name="Check data">
+        <packages>
+            <package name="com.oanda.data.*"/>
+        </packages>
+    </test>
 </suite>

@@ -5,6 +5,8 @@ import com.oanda.waiters.Conditions;
 import com.oanda.waiters.WaitCondition;
 import lombok.experimental.ExtensionMethod;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import static com.oanda.utils.PropertiesReader.loadPropertyName;
@@ -49,6 +51,31 @@ public class CurrentConvertPage extends AbstractPage {
      * The constant RESULT. This is css selector for ui automation script.
      */
     private static final By AMOUNT = By.cssSelector("td[id='sellMyCurrencyGet']");
+
+    /**
+     * The constant QUOTE_AMOUNT. This is css selector for ui automation script.
+     */
+    private static final By QUOTE_AMOUNT = By.cssSelector("input[id='quote_amount_input']");
+
+    /**
+     * The constant SELECT_DATE. This is css selector for ui automation script.
+     */
+    private static final By SELECT_DATE = By.cssSelector("a[id='end_date_button']");
+
+    /**
+     * The constant SELECT_CALENDAR. This is css selector for ui automation script.
+     */
+    private static final By SELECT_CALENDAR = By.cssSelector("div[class='calendarContainer']");
+
+    /**
+     * The constant SELECT_WEEKEND. This is css selector for ui automation script.
+     */
+    private static final By SELECT_WEEKEND = By.xpath("//td[@class='calendarWeekend'][1]");
+
+    /**
+     * The constant QUOTE_AMOUNT. This is css selector for ui automation script.
+     */
+    private double DEFAULT_QUOTE = 0;
 
 
     /**
@@ -139,6 +166,63 @@ public class CurrentConvertPage extends AbstractPage {
     public String getResultFromCalculated() {
         return findElement(RESULT).getAttribute(VALUE);
     }
+
+
+    /**
+     * Enter amount to field current convert page.
+     *
+     * @param amount the amount
+     * @return the current convert page
+     */
+    public CurrentConvertPage enterAmountToField(String amount) {
+        final WaitCondition waitCondition = new WaitCondition();
+        WebElement quoteFiledElement = waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_AMOUNT);
+        quoteFiledElement.clear();
+        quoteFiledElement.sendKeys(amount);
+        waitCondition.waitForTextToBePresentInElementValueByAttribute(findElement(QUOTE_AMOUNT), amount);
+        quoteFiledElement.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+
+    /**
+     * Check amount of calculation current convert page.
+     *
+     * @param defaultAmount the default amount.
+     * @return the current convert page.
+     */
+    public CurrentConvertPage checkAmountOfCalculation(Double defaultAmount) {
+        String leftData = getResultFromCalculated();
+        leftData = leftData.replace(" ", "");
+        leftData = leftData.replace(',', '.');
+        double rightData = DEFAULT_QUOTE * defaultAmount;
+        rightData = Math.round(rightData * 100.0) / 100.0;
+        Assert.assertEquals(Double.parseDouble(leftData), rightData);
+        return this;
+    }
+
+    /**
+     * Select data current convert page.
+     *
+     * @return the current convert page.
+     */
+    public CurrentConvertPage selectData() {
+        WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_DATE).click();
+        waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_CALENDAR);
+
+        return this;
+    }
+
+
+    public CurrentConvertPage selectWeekend() {
+
+        WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_WEEKEND).click();
+
+        return this;
+    }
+
 
     @Override
     public void test() {

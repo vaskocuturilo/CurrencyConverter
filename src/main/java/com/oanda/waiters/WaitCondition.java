@@ -40,6 +40,14 @@ public class WaitCondition {
         return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-
-
+    /**
+     * Wait for text to be present in element value by attribute boolean.
+     *
+     * @param locator the locator
+     * @param text    the text
+     * @return the boolean
+     */
+    public boolean waitForTextToBePresentInElementValueByAttribute(WebElement locator, String text) {
+        return webDriverWait.until(ExpectedConditions.textToBePresentInElementValue(locator, text));
+    }
 }

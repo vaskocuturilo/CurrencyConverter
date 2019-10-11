@@ -27,6 +27,7 @@ public class BaseWeb {
     public void startBrowser() {
         final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         DriverHolder.setDriverThread(new ChromeDriver(capabilities));
+        DriverHolder.getDriverThread().manage().window().maximize();
     }
 
     /**

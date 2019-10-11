@@ -6,6 +6,7 @@ import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
 public class ConvertCurrentTest extends BaseWeb {
+    double defaultAmount = 2400;
 
     @Test
     @Story("Check current convert on page '{0}'")
@@ -16,6 +17,10 @@ public class ConvertCurrentTest extends BaseWeb {
                 .checkExistingField("USD")
                 .checkRequiredField("EUR")
                 .checkInterbankRate("0%")
-                .checkDefaultCalculatedField();
+                .checkDefaultCalculatedField()
+                .enterAmountToField("2400")
+                .checkAmountOfCalculation(defaultAmount);
     }
+
+
 }
