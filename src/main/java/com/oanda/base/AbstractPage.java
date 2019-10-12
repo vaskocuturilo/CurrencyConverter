@@ -60,4 +60,5 @@ public abstract class AbstractPage {
     public WebElement findElement(final By locator) {
         return DriverHolder.getDriverThread().findElement(locator);
     }
+
 }

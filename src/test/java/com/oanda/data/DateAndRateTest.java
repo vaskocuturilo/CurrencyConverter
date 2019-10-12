@@ -15,6 +15,5 @@ public class DateAndRateTest extends BaseWeb {
                 .selectData()
                 .selectWeekend()
                 .checkInterbankRate("0%");
-
     }
 }

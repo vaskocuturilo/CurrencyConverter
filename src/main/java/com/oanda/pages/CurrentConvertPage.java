@@ -65,7 +65,7 @@ public class CurrentConvertPage extends AbstractPage {
     /**
      * The constant SELECT_WEEKEND. This is css selector for ui automation script.
      */
-    private static final By SELECT_WEEKEND = By.xpath("//td[@class='calendarWeekend'][1]");
+    private static final By SELECT_WEEKEND = By.cssSelector("td[class='calendarWeekend']");
 
     /**
      * The constant defaultQuote. This is css selector for ui automation script.
