@@ -38,11 +38,6 @@ public class CurrentConvertPage extends AbstractPage {
     private static final By PERCENT = By.cssSelector("div[id='interbank_rate'] input");
 
     /**
-     * The constant CURRENT_DATE. This is css selector for ui automation script.
-     */
-    private static final By CURRENT_DATE = By.cssSelector("input[id='end_date_input']");
-
-    /**
      * The constant RESULT. This is css selector for ui automation script.
      */
     private static final By RESULT = By.cssSelector("input[id='base_amount_input']");
@@ -73,9 +68,9 @@ public class CurrentConvertPage extends AbstractPage {
     private static final By SELECT_WEEKEND = By.xpath("//td[@class='calendarWeekend'][1]");
 
     /**
-     * The constant QUOTE_AMOUNT. This is css selector for ui automation script.
+     * The constant defaultQuote. This is css selector for ui automation script.
      */
-    private double DEFAULT_QUOTE = 0;
+    private double defaultQuote = 0;
 
 
     /**
@@ -174,9 +169,9 @@ public class CurrentConvertPage extends AbstractPage {
      * @param amount the amount
      * @return the current convert page
      */
-    public CurrentConvertPage enterAmountToField(String amount) {
+    public CurrentConvertPage enterAmountToField(final String amount) {
         final WaitCondition waitCondition = new WaitCondition();
-        WebElement quoteFiledElement = waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_AMOUNT);
+        final WebElement quoteFiledElement = waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_AMOUNT);
         quoteFiledElement.clear();
         quoteFiledElement.sendKeys(amount);
         waitCondition.waitForTextToBePresentInElementValueByAttribute(findElement(QUOTE_AMOUNT), amount);
@@ -191,11 +186,11 @@ public class CurrentConvertPage extends AbstractPage {
      * @param defaultAmount the default amount.
      * @return the current convert page.
      */
-    public CurrentConvertPage checkAmountOfCalculation(Double defaultAmount) {
+    public CurrentConvertPage checkAmountOfCalculation(final Double defaultAmount) {
         String leftData = getResultFromCalculated();
         leftData = leftData.replace(" ", "");
         leftData = leftData.replace(',', '.');
-        double rightData = DEFAULT_QUOTE * defaultAmount;
+        double rightData = defaultQuote * defaultAmount;
         rightData = Math.round(rightData * 100.0) / 100.0;
         Assert.assertEquals(Double.parseDouble(leftData), rightData);
         return this;
@@ -207,7 +202,7 @@ public class CurrentConvertPage extends AbstractPage {
      * @return the current convert page.
      */
     public CurrentConvertPage selectData() {
-        WaitCondition waitCondition = new WaitCondition();
+        final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_DATE).click();
         waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_CALENDAR);
 
@@ -215,9 +210,14 @@ public class CurrentConvertPage extends AbstractPage {
     }
 
 
+    /**
+     * Select weekend current convert page.
+     *
+     * @return the current convert page.
+     */
     public CurrentConvertPage selectWeekend() {
 
-        WaitCondition waitCondition = new WaitCondition();
+        final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_WEEKEND).click();
 
         return this;

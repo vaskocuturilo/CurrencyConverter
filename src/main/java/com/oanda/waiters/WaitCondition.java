@@ -47,7 +47,29 @@ public class WaitCondition {
      * @param text    the text
      * @return the boolean
      */
-    public boolean waitForTextToBePresentInElementValueByAttribute(WebElement locator, String text) {
+    public boolean waitForTextToBePresentInElementValueByAttribute(final WebElement locator, final String text) {
         return webDriverWait.until(ExpectedConditions.textToBePresentInElementValue(locator, text));
     }
+
+    /**
+     * Wait for invisibility of element located by boolean.
+     *
+     * @param locator the locator.
+     * @return the boolean.
+     */
+    public boolean waitForInvisibilityOfElementLocatedBy(final By locator) {
+        return webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+    /**
+     * Wait for presence of element located web element.
+     *
+     * @param locator the locator.
+     * @return the web element.
+     */
+    public WebElement waitForPresenceOfElementLocated(By locator) {
+        return webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+
 }
