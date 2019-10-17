@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 /**
  * The class WaitCondition.
  */
@@ -64,11 +63,22 @@ public class WaitCondition {
     /**
      * Wait for presence of element located web element.
      *
-     * @param locator the locator.
+     * @param locator this is locator(css or xpath).
      * @return the web element.
      */
-    public WebElement waitForPresenceOfElementLocated(By locator) {
+    public WebElement waitForPresenceOfElementLocated(final By locator) {
         return webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+
+    }
+
+    /**
+     * Wait for not presence of element located boolean.
+     *
+     * @param locator this is locator(css or xpath).
+     * @return the boolean.
+     */
+    public boolean waitForNotPresenceOfElementLocated(final By locator) {
+        return webDriverWait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(locator)));
     }
 
 

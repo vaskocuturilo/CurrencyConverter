@@ -25,7 +25,7 @@ public class Conditions {
      * @param element the element.
      * @param text    the text.
      */
-    public static void shouldHave(final WebElement element, final String text) {
+    public void shouldHave(final WebElement element, final String text) {
         assertEquals(element.getText(), text);
     }
 }

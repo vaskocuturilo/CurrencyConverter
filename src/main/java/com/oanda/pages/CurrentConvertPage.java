@@ -1,9 +1,7 @@
 package com.oanda.pages;
 
 import com.oanda.base.AbstractPage;
-import com.oanda.waiters.Conditions;
 import com.oanda.waiters.WaitCondition;
-import lombok.experimental.ExtensionMethod;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -14,7 +12,6 @@ import static com.oanda.utils.PropertiesReader.loadPropertyName;
 /**
  * The class Current convert page.
  */
-@ExtensionMethod(Conditions.class)
 public class CurrentConvertPage extends AbstractPage {
 
     /**
@@ -68,9 +65,9 @@ public class CurrentConvertPage extends AbstractPage {
     private static final By SELECT_WEEKEND = By.cssSelector("td[class='calendarWeekend']");
 
     /**
-     * The constant defaultQuote. This is css selector for ui automation script.
+     * The value defaultQuote. .
      */
-    private double defaultQuote = 0;
+    private double defaultQuote = 0.0d;
 
 
     /**
@@ -138,7 +135,6 @@ public class CurrentConvertPage extends AbstractPage {
     public CurrentConvertPage checkInterbankRate(final String bankPercent) {
         final WaitCondition waitCondition = new WaitCondition();
         Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(PERCENT).getAttribute(VALUE), bankPercent);
-
         return this;
     }
 
@@ -205,7 +201,6 @@ public class CurrentConvertPage extends AbstractPage {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_DATE).click();
         waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_CALENDAR);
-
         return this;
     }
 
@@ -216,10 +211,8 @@ public class CurrentConvertPage extends AbstractPage {
      * @return the current convert page.
      */
     public CurrentConvertPage selectWeekend() {
-
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_WEEKEND).click();
-
         return this;
     }
 
