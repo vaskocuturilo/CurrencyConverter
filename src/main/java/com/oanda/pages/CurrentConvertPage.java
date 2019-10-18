@@ -65,6 +65,22 @@ public class CurrentConvertPage extends AbstractPage {
     private static final By SELECT_WEEKEND = By.cssSelector("td[class='calendarWeekend']");
 
     /**
+     * The constant SELECT_CURRENCY. This is css selector for ui automation script.
+     */
+    private static final By SELECT_CURRENCY = By.cssSelector("div[id='quote_currency_caret']");
+
+    /**
+     * The constant QUOTE_CURRENCY. This is css selector for ui automation script.
+     */
+    private static final By QUOTE_CURRENCY = By.cssSelector("input[id='quote_currency_input']");
+
+    /**
+     * The constant BASE_CURRENCY. This is css selector for ui automation script.
+     */
+    private static final By BASE_CURRENCY = By.cssSelector("input[id='base_currency_input']");
+
+
+    /**
      * The value defaultQuote. .
      */
     private double defaultQuote = 0.0d;
@@ -213,6 +229,33 @@ public class CurrentConvertPage extends AbstractPage {
     public CurrentConvertPage selectWeekend() {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_WEEKEND).click();
+        return this;
+    }
+
+    /**
+     * Select currency quote current convert page.
+     *
+     * @param currency this is value from Enum Currency.
+     * @return the current convert page.
+     */
+    public CurrentConvertPage selectCurrencyQuote(final Currency currency) {
+        WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_CURRENCY).click();
+        waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_CURRENCY).sendKeys(String.valueOf(currency) + Keys.RETURN);
+
+        return this;
+    }
+
+    /**
+     * Select currency base current convert page.
+     *
+     * @param currency this is value from Enum Currency.
+     * @return the current convert page.
+     */
+    public CurrentConvertPage selectCurrencyBase(final Currency currency) {
+        WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_CURRENCY).click();
+        waitCondition.waitForVisibilityOfElementLocatedBy(BASE_CURRENCY).sendKeys(String.valueOf(currency) + Keys.RETURN);
         return this;
     }
 

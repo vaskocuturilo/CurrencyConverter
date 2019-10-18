@@ -11,4 +11,9 @@
             <package name="com.oanda.data.*"/>
         </packages>
     </test>
+    <test name="Check tjat user can change currency">
+        <packages>
+            <package name="com.oanda.select.*"/>
+        </packages>
+    </test>
 </suite>
