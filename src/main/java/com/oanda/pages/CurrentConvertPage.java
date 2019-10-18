@@ -65,11 +65,6 @@ public class CurrentConvertPage extends AbstractPage {
     private static final By SELECT_WEEKEND = By.cssSelector("td[class='calendarWeekend']");
 
     /**
-     * The constant SELECT_CURRENCY. This is css selector for ui automation script.
-     */
-    private static final By SELECT_CURRENCY = By.cssSelector("div[id='quote_currency_caret']");
-
-    /**
      * The constant QUOTE_CURRENCY. This is css selector for ui automation script.
      */
     private static final By QUOTE_CURRENCY = By.cssSelector("input[id='quote_currency_input']");
@@ -79,7 +74,10 @@ public class CurrentConvertPage extends AbstractPage {
      */
     private static final By BASE_CURRENCY = By.cssSelector("input[id='base_currency_input']");
 
-
+    /**
+     * The constant RATE_BANK. This is css selector for ui automation script.
+     */
+    private static final By RATE_BANK = By.cssSelector("input[id='interbank_rates_input']");
     /**
      * The value defaultQuote. .
      */
@@ -240,7 +238,6 @@ public class CurrentConvertPage extends AbstractPage {
      */
     public CurrentConvertPage selectCurrencyQuote(final Currency currency) {
         WaitCondition waitCondition = new WaitCondition();
-        waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_CURRENCY).click();
         waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_CURRENCY).sendKeys(String.valueOf(currency) + Keys.RETURN);
 
         return this;
@@ -254,8 +251,15 @@ public class CurrentConvertPage extends AbstractPage {
      */
     public CurrentConvertPage selectCurrencyBase(final Currency currency) {
         WaitCondition waitCondition = new WaitCondition();
-        waitCondition.waitForVisibilityOfElementLocatedBy(SELECT_CURRENCY).click();
         waitCondition.waitForVisibilityOfElementLocatedBy(BASE_CURRENCY).sendKeys(String.valueOf(currency) + Keys.RETURN);
+
+        return this;
+    }
+
+    public CurrentConvertPage selectPercent(final Percent percent) {
+        WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(RATE_BANK).sendKeys(String.valueOf(percent) + Keys.ENTER);
+
         return this;
     }
 
