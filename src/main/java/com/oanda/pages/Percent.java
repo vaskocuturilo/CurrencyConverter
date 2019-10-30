@@ -27,8 +27,10 @@ public enum Percent {
 
     /**
      * The constructor.
+     *
+     * @param percentData this is percent data.
      */
-    Percent(int percentData) {
+    Percent(final int percentData) {
         this.percent = percentData;
     }
 

@@ -32,8 +32,10 @@ public enum Currency {
 
     /**
      * The constructor.
+     *
+     * @param selectData this is value select data.
      */
-    Currency(String selectData) {
+    Currency(final String selectData) {
         this.select = selectData;
     }
 

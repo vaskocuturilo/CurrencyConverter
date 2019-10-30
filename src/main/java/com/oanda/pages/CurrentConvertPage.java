@@ -256,6 +256,12 @@ public class CurrentConvertPage extends AbstractPage {
         return this;
     }
 
+    /**
+     * Select percent current convert page.
+     *
+     * @param percent the percent.
+     * @return the current convert page.
+     */
     public CurrentConvertPage selectPercent(final Percent percent) {
         WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(RATE_BANK).sendKeys(String.valueOf(percent) + Keys.ENTER);
