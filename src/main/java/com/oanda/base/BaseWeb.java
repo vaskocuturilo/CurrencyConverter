@@ -1,6 +1,6 @@
 package com.oanda.base;
 
-import com.oanda.utils.TakeScreenShotOnFailureListeners;
+import com.oanda.utils.ScreenShotOnFailure;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
@@ -11,7 +11,7 @@ import org.testng.annotations.Listeners;
 /**
  * The class Base web.
  */
-@Listeners(TakeScreenShotOnFailureListeners.class)
+@Listeners(ScreenShotOnFailure.class)
 public class BaseWeb {
 
     /**
