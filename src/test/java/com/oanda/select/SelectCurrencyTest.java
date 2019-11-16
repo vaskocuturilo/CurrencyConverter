@@ -15,7 +15,7 @@ public class SelectCurrencyTest extends BaseWeb {
         new CurrentConvertPage()
                 .navigateToUrl("URL")
                 .checkTitlePage("TITLE")
-                .selectPercent(Percent.ZERO)
+                .selectPercent(Percent.TWO)
                 .selectCurrencyQuote(Currency.EUR)
                 .checkExistingField("EUR")
                 .selectCurrencyBase(Currency.CAD)

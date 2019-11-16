@@ -44,7 +44,7 @@ public enum Currency {
      *
      * @return the select.
      */
-    public String getSelect() {
+    public String getCurrency() {
         return select;
     }
 }
