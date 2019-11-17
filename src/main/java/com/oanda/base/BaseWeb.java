@@ -1,7 +1,7 @@
 package com.oanda.base;
 
+import com.oanda.browser.Chrome;
 import com.oanda.utils.ScreenShotOnFailure;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -29,9 +29,9 @@ public class BaseWeb {
     @SuppressWarnings("deprecation")
     @BeforeClass(alwaysRun = true)
     public void startBrowser() {
+        Chrome chrome = new Chrome();
         final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        DriverHolder.setDriverThread(new ChromeDriver(capabilities));
-        DriverHolder.getDriverThread().manage().window().maximize();
+        DriverHolder.setDriverThread(chrome.createDriver(capabilities));
     }
 
     /**
