@@ -26,6 +26,7 @@ public class BaseWeb {
     /**
      * Start browser.
      */
+    @SuppressWarnings("deprecation")
     @BeforeClass(alwaysRun = true)
     public void startBrowser() {
         final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
