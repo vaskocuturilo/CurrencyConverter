@@ -1,6 +1,8 @@
 package com.oanda.base;
 
 import com.oanda.browser.Chrome;
+import com.oanda.browser.Remote;
+import com.oanda.environment.Environment;
 import com.oanda.utils.ScreenShotOnFailure;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
@@ -29,9 +31,16 @@ public class BaseWeb {
     @SuppressWarnings("deprecation")
     @BeforeClass(alwaysRun = true)
     public void startBrowser() {
-        Chrome chrome = new Chrome();
-        final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        DriverHolder.setDriverThread(chrome.createDriver(capabilities));
+
+        if (Environment.isCheckOperationSystem()) {
+            Remote remote = new Remote();
+            final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+            DriverHolder.setDriverThread(remote.createDriver(capabilities));
+        } else {
+            Chrome chrome = new Chrome();
+            final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+            DriverHolder.setDriverThread(chrome.createDriver(capabilities));
+        }
     }
 
     /**

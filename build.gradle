@@ -40,6 +40,7 @@ dependencies {
     compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.7.0'
     compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.10'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.5'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.141.5'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
     compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.7.1'
     testCompile group: 'org.slf4j', name: 'slf4j-nop', version: '1.8.0-beta2'
