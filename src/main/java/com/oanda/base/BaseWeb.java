@@ -1,13 +1,12 @@
 package com.oanda.base;
 
 import com.oanda.browser.Chrome;
+import com.oanda.browser.GridLauncher;
 import com.oanda.browser.Remote;
 import com.oanda.environment.Environment;
 import com.oanda.utils.ScreenShotOnFailure;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 
 /**
@@ -28,13 +27,12 @@ public class BaseWeb {
     /**
      * Start browser.
      */
-    @SuppressWarnings("deprecation")
-    @BeforeClass(alwaysRun = true)
+    @BeforeTest(alwaysRun = true)
     public void startBrowser() {
-
         if (Environment.isCheckOperationSystem()) {
             Remote remote = new Remote();
             final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+            GridLauncher.createLauncher();
             DriverHolder.setDriverThread(remote.createDriver(capabilities));
         } else {
             Chrome chrome = new Chrome();
@@ -46,9 +44,8 @@ public class BaseWeb {
     /**
      * Close browser.
      */
-    @AfterClass(alwaysRun = true)
+    @AfterTest(alwaysRun = true)
     public void closeBrowser() {
         AbstractPage.closeWebBrowser();
-
     }
 }
