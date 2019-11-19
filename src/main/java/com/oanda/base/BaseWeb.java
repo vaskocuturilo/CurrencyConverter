@@ -27,12 +27,12 @@ public class BaseWeb {
     /**
      * Start browser.
      */
-    @BeforeTest(alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void startBrowser() {
         if (Environment.isCheckOperationSystem()) {
             Remote remote = new Remote();
-            final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
             GridLauncher.createLauncher();
+            final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
             DriverHolder.setDriverThread(remote.createDriver(capabilities));
         } else {
             Chrome chrome = new Chrome();
@@ -44,7 +44,7 @@ public class BaseWeb {
     /**
      * Close browser.
      */
-    @AfterTest(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void closeBrowser() {
         AbstractPage.closeWebBrowser();
     }

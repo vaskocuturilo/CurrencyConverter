@@ -16,7 +16,6 @@ public class Remote implements WebDriverProvider {
     public WebDriver createDriver(DesiredCapabilities capabilities) {
         capabilities.setCapability("browserName", "chrome");
         capabilities.setCapability("version", "77.0");
-
         try {
             return new RemoteWebDriver(getGridHubUrl(), capabilities);
         } catch (Exception ex) {
@@ -30,7 +29,7 @@ public class Remote implements WebDriverProvider {
     private static URL getGridHubUrl() {
         URL hostURL = null;
         try {
-            hostURL = new URL(System.getProperty("http://127.0.0.1:5555/wd/hub", "http://127.0.0.1:5555/wd/hub"));
+            hostURL = new URL(System.getProperty("http://127.0.0.1:4444/wd/hub", "http://127.0.0.1:4444/wd/hub"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
