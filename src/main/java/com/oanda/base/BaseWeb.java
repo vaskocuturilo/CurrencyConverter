@@ -1,13 +1,11 @@
 package com.oanda.base;
 
 import com.oanda.browser.Chrome;
-import com.oanda.browser.GridLauncher;
-import com.oanda.browser.Remote;
+import com.oanda.remote.Remote;
 import com.oanda.environment.Environment;
 import com.oanda.utils.ScreenShotOnFailure;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
-
 
 /**
  * The class Base web.
@@ -30,12 +28,11 @@ public class BaseWeb {
     @BeforeClass(alwaysRun = true)
     public void startBrowser() {
         if (Environment.isCheckOperationSystem()) {
-            Remote remote = new Remote();
-            GridLauncher.createLauncher();
+            final Remote remote = new Remote();
             final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
             DriverHolder.setDriverThread(remote.createDriver(capabilities));
         } else {
-            Chrome chrome = new Chrome();
+            final Chrome chrome = new Chrome();
             final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
             DriverHolder.setDriverThread(chrome.createDriver(capabilities));
         }

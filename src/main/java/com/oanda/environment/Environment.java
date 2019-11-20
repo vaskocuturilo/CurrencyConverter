@@ -1,10 +1,17 @@
 package com.oanda.environment;
 
+import java.util.Locale;
 
 /**
  * The class Environment.
  */
-public class Environment {
+public final class Environment {
+
+    /**
+     * The default constructor.
+     */
+    private Environment() {
+    }
 
     /**
      * Method isCheckOSSystem.
@@ -15,7 +22,7 @@ public class Environment {
      */
     public static boolean isCheckOperationSystem() {
 
-        String operationSystem = System.getProperty("os.name").toLowerCase();
+        final String operationSystem = System.getProperty("os.name").toLowerCase(Locale.ROOT);
 
         return (operationSystem.contains("nix") || operationSystem.contains("nux"));
     }
