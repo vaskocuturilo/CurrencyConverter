@@ -12,29 +12,61 @@ import org.testng.TestListenerAdapter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
+
+/**
+ * The class Screen shot on failure.
+ */
 public class ScreenShotOnFailure extends TestListenerAdapter implements ITestListener {
+
+    /**
+     * The constant LOGGER.
+     */
+    private static final Logger LOGGER = Logger.getLogger(ScreenShotOnFailure.class.getName());
+
     private ByteArrayOutputStream request = new ByteArrayOutputStream();
     private ByteArrayOutputStream response = new ByteArrayOutputStream();
 
+    /**
+     * The default constructor.
+     */
+    public ScreenShotOnFailure() {
+        super();
+        //empty
+        return;
+    }
+
+    /**
+     * Attach browser screen shot byte [ ].
+     *
+     * @return the byte [ ]
+     * @throws IOException the io exception
+     */
     @Attachment(value = "ScreenShot on Failed step", type = "image/png")
     static byte[] attachBrowserScreenShot() throws IOException {
-        File scrFile = ((TakesScreenshot) DriverHolder.getDriverThread()).getScreenshotAs(OutputType.FILE);
+        final File scrFile = ((TakesScreenshot) DriverHolder.getDriverThread()).getScreenshotAs(OutputType.FILE);
         return Files.toByteArray(scrFile);
     }
 
     @Override
-    public void onTestFailure(ITestResult iTestResult) {
+    public void onTestFailure(final ITestResult iTestResult) {
         try {
             attachBrowserScreenShot();
             onTestSuccess(iTestResult);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            LOGGER.info("This error" + ex);
         }
     }
 
-    public byte[] attach(ByteArrayOutputStream log) {
-        byte[] array = log.toByteArray();
+    /**
+     * Method Attach byte [ ].
+     *
+     * @param log the log
+     * @return the byte [ ]
+     */
+    public byte[] attach(final ByteArrayOutputStream log) {
+        final byte[] array = log.toByteArray();
         log.reset();
         return array;
     }

@@ -27,7 +27,7 @@ public class BaseWeb {
      */
     @BeforeClass(alwaysRun = true)
     public void startBrowser() {
-        if (Environment.isCheckOperationSystem()) {
+        if (Environment.isCheckOperatingSystem()) {
             final Remote remote = new Remote();
             final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
             DriverHolder.setDriverThread(remote.createDriver(capabilities));

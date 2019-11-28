@@ -237,8 +237,8 @@ public class CurrentConvertPage extends AbstractPage {
      * @return the current convert page.
      */
     public CurrentConvertPage selectCurrencyQuote(final Currency currency) {
-        WaitCondition waitCondition = new WaitCondition();
-        waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_CURRENCY).sendKeys(String.valueOf(currency.getCurrency()) + Keys.RETURN);
+        final WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(QUOTE_CURRENCY).sendKeys(currency.getCurrency() + Keys.RETURN);
 
         return this;
     }
@@ -250,8 +250,8 @@ public class CurrentConvertPage extends AbstractPage {
      * @return the current convert page.
      */
     public CurrentConvertPage selectCurrencyBase(final Currency currency) {
-        WaitCondition waitCondition = new WaitCondition();
-        waitCondition.waitForVisibilityOfElementLocatedBy(BASE_CURRENCY).sendKeys(String.valueOf(currency.getCurrency()) + Keys.RETURN);
+        final WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(BASE_CURRENCY).sendKeys(currency.getCurrency() + Keys.RETURN);
 
         return this;
     }
@@ -263,7 +263,7 @@ public class CurrentConvertPage extends AbstractPage {
      * @return the current convert page.
      */
     public CurrentConvertPage selectPercent(final Percent percent) {
-        WaitCondition waitCondition = new WaitCondition();
+        final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(RATE_BANK).sendKeys(String.valueOf(percent.getPercent()) + Keys.ENTER);
 
         return this;

@@ -7,6 +7,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import static com.oanda.remote.GridLauncher.createLauncher;
 import static com.oanda.remote.StartHub.createHub;
@@ -16,8 +17,22 @@ import static com.oanda.remote.StartHub.createHub;
  */
 public class Remote implements WebDriverProvider {
 
+    /**
+     * The constant LOGGER.
+     */
+    private static final Logger LOGGER = Logger.getLogger(Remote.class.getName());
+
+    /**
+     * The default constructor.
+     */
+    public Remote() {
+        super();
+        //empty
+        return;
+    }
+
     @Override
-    public WebDriver createDriver(DesiredCapabilities capabilities) {
+    public WebDriver createDriver(final DesiredCapabilities capabilities) {
         createHub();
         createLauncher();
         capabilities.setCapability("browserName", "chrome");
@@ -36,8 +51,8 @@ public class Remote implements WebDriverProvider {
         URL hostURL = null;
         try {
             hostURL = new URL(System.getProperty("http://localhost:5555/wd/hub", "http://localhost:5555/wd/hub"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        } catch (MalformedURLException ex) {
+            LOGGER.info("This error" + ex);
         }
         return hostURL;
     }
