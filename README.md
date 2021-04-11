@@ -7,6 +7,7 @@
     
 ## Requirements:
 - Use any *object-oriented language* .
+- Use Selenium WebDriver/Selenide for web interactions
 - Use automation patterns like *PageObject*, *data-driven* tests, etc.
 - Use any testing frameworks. 
 - provide code and clear instructions how to run it.
@@ -18,10 +19,19 @@
 ## Instructions how to run:
 Execute command 
 to run test ```gradle clean test ```
-to generate report ```gradle allureReport, gradle allureServe```
 
-**List of technologies**: Java 8, Gradle, TestNG, Allure, Selenium WebDriver.
-**Note**: You should have installed Chrome browser, Gradle.
+### Generate Allure report 
+ 
+ ```gradle allure:report```
+ 
+### Open Allure report in browser
+ 
+ ```gradle allure:serve```
+ 
+ **List of technologies**: Java 8, Gradle, Selenide/Selenium, TestNG, Allure, PageObject.
+ 
+ **Note**: You should have installed Chrome browser, Gradle.
+
 
 ![](https://c.radikal.ru/c10/1910/da/9576539a8d06.png)
 
